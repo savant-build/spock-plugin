@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: Inversoft
+Savant-Plugin-Class: org.savantbuild.plugin.spock.SpockPlugin
+Specification-Version: 0.1.0
+Specification-Vendor: Savant
+Implementation-Version: 0.1.0
+Implementation-Vendor: Savant
