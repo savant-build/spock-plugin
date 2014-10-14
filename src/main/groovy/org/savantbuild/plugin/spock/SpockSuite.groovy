@@ -28,26 +28,47 @@ import org.savantbuild.output.Output
  */
 class SpockSuite {
 
+  private String fileExtension
+
   Set<String> tests = new TreeSet<>()
 
   boolean initialized
 
   Output output
 
-  String spockExtension = "Spec.groovy"
+  List singleTests
+
+  String spockSuffix = "Spec.groovy"
 
   String sourceTestDirectory = "src/test/groovy"
 
   private findSpecifications() {
+
+    int singleTestsCount = 0
+    if (singleTests != null) {
+      output.info("Running only the following specifications: [%s].", String.join(", ", singleTests))
+      singleTestsCount = singleTests.size()
+    }
+
     Files.walkFileTree( Paths.get(sourceTestDirectory), new SimpleFileVisitor<Path>() {
 
       @Override
       public FileVisitResult visitFile(Path filePath, BasicFileAttributes attributes) {
         if (filePath != null) {
-          output.debug(filePath.fileName.toString());
-          if (filePath.fileName.toString().endsWith(spockExtension)) {
-            output.debug(filePath.toString())
-            tests.add(filePath.toString())
+          if (singleTests != null) {
+            String fileName = filePath.getFileName().toString();
+            fileName = fileName.substring(0, fileName.indexOf(fileExtension))
+            if (singleTests.contains(fileName)) {
+              tests.add(filePath.toString())
+              singleTestsCount--
+              if (singleTestsCount == 0) {
+                return FileVisitResult.TERMINATE
+              }
+            }
+          } else {
+            if (filePath.fileName.toString().endsWith(spockSuffix)) {
+              tests.add(filePath.toString())
+            }
           }
         }
         return FileVisitResult.CONTINUE
@@ -56,6 +77,12 @@ class SpockSuite {
   }
 
   void initialize() {
+
+    fileExtension = spockSuffix
+    if (spockSuffix.indexOf('.') > 0) {
+      fileExtension = spockSuffix.substring(spockSuffix.indexOf('.'))
+    }
+
     findSpecifications()
     initialized = true
   }

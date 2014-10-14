@@ -18,7 +18,7 @@ import java.nio.file.Paths
 
 savantVersion = "0.3.0"
 
-project(group: "org.savantbuild.plugin", name: "spock", version: "0.1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.savantbuild.plugin", name: "spock", version: "0.1.1", licenses: ["ApacheV2_0"]) {
   workflow {
     standard()
   }
@@ -63,7 +63,7 @@ groovy.settings.javaVersion = "1.8"
 groovy.settings.jarManifest["Savant-Plugin-Class"] = "org.savantbuild.plugin.spock.SpockPlugin"
 groovyTestNG.settings.groovyVersion = "2.2"
 groovyTestNG.settings.javaVersion = "1.8"
-idea.settings.imlFile = Paths.get("dependency-plugin.iml")
+idea.settings.imlFile = Paths.get("spock-plugin.iml")
 idea.settings.moduleMap = [
     "org.savantbuild:savant-core:${savantVersion}":"savant-core",
     "org.savantbuild:savant-dependency-management:${savantVersion}":"savant-dependency-management",

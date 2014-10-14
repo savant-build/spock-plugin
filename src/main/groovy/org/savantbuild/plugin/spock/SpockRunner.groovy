@@ -40,7 +40,7 @@ class SpockRunner {
       throw new IllegalStateException("SpockSuite must be initialized prior to calling doRun() on the SpockRunner.")
     }
 
-    int result;
+    int result = 0
     suite.tests.each() {
 
       output.info("[Spec] ${it}")

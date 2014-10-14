@@ -114,7 +114,8 @@ class SpockPlugin extends BaseGroovyPlugin {
       project.publications.group("test").each { publication -> path(location: publication.file) }
     }
 
-    SpockSuite suite = new SpockSuite(output: output, sourceTestDirectory: settings.sourceTestDirectory)
+    List singleTests = runtimeConfiguration.switches.valueSwitches.get("test")
+    SpockSuite suite = new SpockSuite(output: output, singleTests: singleTests, sourceTestDirectory: settings.sourceTestDirectory)
     suite.initialize()
 
     SpockRunner runner = new SpockRunner(groovyPath: groovyPath, output: output, project: project, settings: settings)
