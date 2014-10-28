@@ -55,7 +55,7 @@ dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:0.3.1")
 groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:0.3.1")
 groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:0.3.1")
 idea = loadPlugin(id: "org.savantbuild.plugin:idea:0.3.2")
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:0.3.3")
+release = loadPlugin(id: "org.savantbuild.plugin:release-git:0.3.4")
 
 // Plugin settings
 groovy.settings.groovyVersion = "2.2"
