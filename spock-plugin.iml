@@ -8,9 +8,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Groovy 2.2" level="application" />
-    <orderEntry type="library" name="Groovy 2.2" level="application" />
-    <orderEntry type="library" name="Groovy 2.2" level="application" />
     <orderEntry type="module" module-name="savant-core" scope="PROVIDED" />
     <orderEntry type="module-library" scope="PROVIDED">
       <library>
@@ -47,17 +44,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.savant/cache/org/savantbuild/plugin/dependency/0.3.0/dependency-0.3.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.savant/cache/org/savantbuild/plugin/dependency/0.3.0/dependency-0.3.0-src.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
+    <orderEntry type="module" module-name="dependency-plugin" />
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>

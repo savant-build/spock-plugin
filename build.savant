@@ -32,11 +32,7 @@ project(group: "org.savantbuild.plugin", name: "spock", version: "0.1.1", licens
       dependency(id: "org.savantbuild:savant-core:${savantVersion}")
       dependency(id: "org.savantbuild:savant-dependency-management:${savantVersion}")
       dependency(id: "org.savantbuild:savant-utils:${savantVersion}")
-
-      // Overrides
-      dependency(id: "org.ow2.asm:asm:5.0.3", skipCompatibilityCheck: true)
     }
-
     group(name: "compile") {
       dependency(id: "org.savantbuild.plugin:dependency:${savantVersion}")
     }
@@ -67,7 +63,8 @@ idea.settings.imlFile = Paths.get("spock-plugin.iml")
 idea.settings.moduleMap = [
     "org.savantbuild:savant-core:${savantVersion}":"savant-core",
     "org.savantbuild:savant-dependency-management:${savantVersion}":"savant-dependency-management",
-    "org.savantbuild:savant-utils:${savantVersion}":"savant-utils"
+    "org.savantbuild:savant-utils:${savantVersion}":"savant-utils",
+    "org.savantbuild.plugin:dependency:${savantVersion}":"dependency-plugin"
 ]
 
 target(name: "clean", description: "Cleans the project") {

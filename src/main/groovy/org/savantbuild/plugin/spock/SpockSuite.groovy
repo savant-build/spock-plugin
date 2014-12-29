@@ -14,6 +14,7 @@
  * language governing permissions and limitations under the License.
  */
 package org.savantbuild.plugin.spock
+
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
 import java.nio.file.Path
