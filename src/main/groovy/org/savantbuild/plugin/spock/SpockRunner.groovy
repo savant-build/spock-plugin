@@ -25,8 +25,11 @@ import org.savantbuild.output.Output
  * @author Daniel DeGroff
  */
 class SpockRunner {
+  String groovyHome
 
   Path groovyPath
+
+  String javaHome
 
   Output output
 
@@ -35,28 +38,26 @@ class SpockRunner {
   SpockSettings settings
 
   int doRun(Classpath classpath, SpockSuite suite) {
-
     if (!suite.initialized) {
       throw new IllegalStateException("SpockSuite must be initialized prior to calling doRun() on the SpockRunner.")
     }
 
     int result = 0
     suite.tests.each() {
-
       output.info("[Spec] ${it}")
 
       String command = "${groovyPath} ${settings.jvmArguments} ${classpath.toString("-cp ")} ${it}"
       output.debug(" Running command: [%s]", command)
 
-      Process process = command.execute(null, project.directory.toFile())
-      process.consumeProcessOutput(System.out, System.err)
+      Process process = command.execute(["JAVA_HOME=${javaHome}", "GROOVY_HOME=${groovyHome}"], project.directory.toFile())
+      process.consumeProcessOutput((Appendable) System.out, System.err)
 
       result = process.waitFor()
       if (result != 0) {
         return result;
       }
-
     }
+
     return result
   }
 }

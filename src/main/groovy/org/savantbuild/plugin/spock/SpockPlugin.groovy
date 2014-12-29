@@ -48,6 +48,8 @@ class SpockPlugin extends BaseGroovyPlugin {
 
   DependencyPlugin dependencyPlugin
 
+  String groovyHome
+
   Path groovyPath
 
   String javaHome
@@ -71,7 +73,7 @@ class SpockPlugin extends BaseGroovyPlugin {
           "  groovy.settings.groovyVersion=\"2.1\"")
     }
 
-    String groovyHome = properties.getProperty(settings.groovyVersion)
+    groovyHome = properties.getProperty(settings.groovyVersion)
     if (!groovyHome) {
       fail("No GDK is configured for version [${settings.groovyVersion}].\n\n" + GROOVY_ERROR_MESSAGE)
     }
@@ -99,8 +101,8 @@ class SpockPlugin extends BaseGroovyPlugin {
    * Runs the Spock tests.
    */
   void test() {
-
     output.info("[Spock] Running:\n")
+
     if (runtimeConfiguration.switches.booleanSwitches.contains("skipTests")) {
       output.info("Skipping tests")
       return
@@ -118,12 +120,10 @@ class SpockPlugin extends BaseGroovyPlugin {
     SpockSuite suite = new SpockSuite(output: output, singleTests: singleTests, sourceTestDirectory: settings.sourceTestDirectory)
     suite.initialize()
 
-    SpockRunner runner = new SpockRunner(groovyPath: groovyPath, output: output, project: project, settings: settings)
+    SpockRunner runner = new SpockRunner(groovyHome: groovyHome, javaHome: javaHome, groovyPath: groovyPath, output: output, project: project, settings: settings)
     def result = runner.doRun(classpath, suite)
     if (result != 0) {
       fail("Build failed. SpockRunner return code [%d]", result)
     }
-
   }
-
 }
