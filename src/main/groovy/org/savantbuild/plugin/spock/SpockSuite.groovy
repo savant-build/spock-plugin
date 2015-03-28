@@ -47,7 +47,7 @@ class SpockSuite {
 
     int singleTestsCount = 0
     if (singleTests != null) {
-      output.info("Running only the following specifications: [%s].", String.join(", ", singleTests))
+      output.infoln("Running only the following specifications: [%s].", String.join(", ", singleTests))
       singleTestsCount = singleTests.size()
     }
 

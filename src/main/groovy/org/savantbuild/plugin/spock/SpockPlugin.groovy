@@ -101,10 +101,10 @@ class SpockPlugin extends BaseGroovyPlugin {
    * Runs the Spock tests.
    */
   void test() {
-    output.info("[Spock] Running:\n")
+    output.infoln("[Spock] Running:\n")
 
     if (runtimeConfiguration.switches.booleanSwitches.contains("skipTests")) {
-      output.info("Skipping tests")
+      output.infoln("Skipping tests")
       return
     }
 

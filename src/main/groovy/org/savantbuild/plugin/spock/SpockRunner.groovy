@@ -44,10 +44,10 @@ class SpockRunner {
 
     int result = 0
     suite.tests.each() {
-      output.info("[Spec] ${it}")
+      output.infoln("[Spec] ${it}")
 
       String command = "${groovyPath} ${settings.jvmArguments} ${classpath.toString("-cp ")} ${it}"
-      output.debug(" Running command: [%s]", command)
+      output.debugln(" Running command: [%s]", command)
 
       Process process = command.execute(["JAVA_HOME=${javaHome}", "GROOVY_HOME=${groovyHome}"], project.directory.toFile())
       process.consumeProcessOutput((Appendable) System.out, System.err)
